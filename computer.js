@@ -18,6 +18,12 @@ var matrixA = [[-1, 1, 1, 0, 0, 11],
 				[-6, -4, 0, 0, 0, 0]];
 
 var computeResultingRow = function(list1, list2, operation, inverse){
+
+	console.log("Performming row operation: ");
+	console.log("List 1:" + list1);
+	console.log("List 2:" + list2);
+	console.log("operation: " + operation + " inverse: " + inverse);
+	console.log();
 	var result = [];
 	for(var i = 0 ; i < list1.length; i++){
 		switch(operation){
@@ -51,8 +57,8 @@ var findPivotPoint = function(matrixA){
 		return("Error: length of column matrix");
 	}
 
-	var indexOfPivot = findMaxNegative(matrixA[matrixA.length-1]);	//could be either the object row or the resource column (dual primal method)
-	var coordinateOfPivot = new coordinate(indexOfPivot, findIndexWithMinDataRatio(matrixA, indexOfPivot));
+	var yCoord = findMaxNegative(matrixA[matrixA.length-1]);	//could be either the object row or the resource column (dual primal method)
+	var coordinateOfPivot = new coordinate(findIndexWithMinDataRatio(matrixA, yCoord), yCoord);
 	return coordinateOfPivot;	
 }
 
@@ -70,9 +76,7 @@ var findIndexWithMinDataRatio = function(matrixA, yCoord){
 	for (var i = 0; i < matrixA.length-1; i++){
 		if(matrixA[i][yCoord] > 0){
 			currentMinDataRatio = matrixA[i][matrixA[0].length-1] / matrixA[i][yCoord];
-			console.log("Data ratio: " + matrixA[i][matrixA[0].length-1] + " / " + matrixA[i][yCoord] + " = " + currentMinDataRatio);
 			if(currentMinDataRatio < smallestDataRatio){
-				console.log(currentMinDataRatio + " is less than " + smallestDataRatio);
 				smallestDataRatio = currentMinDataRatio;
 				indexOfMinDataRatio = i;
 			}
@@ -80,7 +84,6 @@ var findIndexWithMinDataRatio = function(matrixA, yCoord){
 	}
 
 	if(smallestDataRatio != Number.MAX_SAFE_INTEGER){
-		console.log("The returned y index is: "+ indexOfMinDataRatio);
 		return indexOfMinDataRatio;
 	}else{
 		console.log("unbounded");
@@ -104,9 +107,45 @@ var findMaxNegative = function(vector){
 	if(vector[indexForMostNegative] >= 0){
 		console.log("Already feasibly");
 	}
-	console.log("Testing max negative: " + vector[indexForMostNegative]);
 	return indexForMostNegative;
 }
+
+var computeNextTabluea = function(matrixA){
+	//refractor current row
+	var pivotCoordinate = findPivotPoint(matrixA);
+	var refractorBy = 1 / matrixA[pivotCoordinate.x][pivotCoordinate.y];
+	var operation;
+	var ARow = matrixA.length;
+	var AColumn = matrixA[0].length;
+	for(var i = 0; i < AColumn; i++){
+		matrixA[pivotCoordinate.x][i] = matrixA[pivotCoordinate.x][i] * refractorBy; 
+	}
+	//refractor other rows;
+	for(i = 0 ; i < ARow; i++){
+		if(i === pivotCoordinate.x){
+			continue;
+		}
+
+		if(matrixA[i][pivotCoordinate.y] >  0){
+			operation = '+';
+		}else if(matrixA[i][pivotCoordinate.y] < 0){
+			operation = '-';
+		}else{
+			//entry of the corresponding row is already 0, no work needs to be done. Also, don't want to divide by zero (which happens in the next statement of code);
+			continue;
+		}
+		refractorBy = matrixA[i][pivotCoordinate.y];
+		matrixA[i] = computeResultingRow( matrixA[i], matrixA[pivotCoordinate.x], '-', refractorBy); 
+		
+	}
+
+	pirintMatrix(matrixA);
+
+	return matrixA;
+
+
+}
+
 
 var printResultingRow = function(result){
 	var resultStr = "";
@@ -136,14 +175,8 @@ var pirintMatrix = function(matrixA){
 //printResultingRow(result);
 var test = function(list1, list2, matrixA){
 	pirintMatrix(matrixA);
-	console.log("Testing pivotal point");
-	
-	var pivotReturn = findPivotPoint(matrixA);
-	if(typeof(pivotReturn) === "string"){
-		console.log(pivotReturn);
-	}else{
-		console.log("The pivot is: " + pivotReturn.toString());
-	}
+	computeNextTabluea(matrixA);	
+
 }
 
 test(list1, list2, matrixA);
