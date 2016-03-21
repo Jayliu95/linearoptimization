@@ -1,21 +1,22 @@
-'use strict'
 
 //declare modules
-angular.module('Home', []);
-angular.module('Begin' []);
+angular.module('linearOptimizationApp', ['ngRoute'])
 
 //routing config
 .config(['$routeProvider', function($routeProvider){
+	$routeProvider
 	.when('/begin',{
 		controller: 'beginCtrl',
-		templateUrl: 'view/begin.html'
+		templateUrl: 'begin.html'
 	})
 
 	.when('/', {
 		controller: 'HomeCtrl',
-		templateUrl: 'views/index.html'
+		templateUrl: 'home.html'
 	})
 
-	.otherwise({ redirectTo: '/home' });
-}])
+	.otherwise({ 
+		redirectTo: '/' 
+	});
+}]);
 

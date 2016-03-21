@@ -5,8 +5,16 @@ Using John Papa's angular project's strucutre
 		mainController.js
 	/services/
 	/views/
-		index.html
+		index.html (load json file to continue work)
+		begin.html (normal setup)
 	app.js
 /content
 /scripts
 /test
+
+User will be granted permission to upload json file or setup equations manually
+
+create service that will handle the processing of output
+
+create single page to display step by step
+
