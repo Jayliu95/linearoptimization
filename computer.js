@@ -10,12 +10,14 @@ function coordinate(x,y){
 /*
  *	These are the test values;
  */
-var list1 = [1/8, 15/8, 0, 161/4];	//resulting row
-var list2 = [1, 7, -8, 2];	//pivotal row
+var list1 = [0, 7/3, 0 , 1/3, 1/3, 0, -10/3];	//resulting row
+var list2 = [0, 1/6, 0, 1/6, 1, -1/6, 15/6];	//pivotal row
 var matrixA = [[-1, 1, 1, 0, 0, 11],
 				[1, 1, 0, 1, 0, 27],
 				[2, 5, 0, 0, 1, 90],
 				[-6, -4, 0, 0, 0, 0]];
+
+
 
 var computeResultingRow = function(list1, list2, operation, inverse){
 
@@ -47,6 +49,7 @@ var computeResultingRow = function(list1, list2, operation, inverse){
  * 	Input:
  */
 
+console.log(computeResultingRow(list1, list2, '-', 1/3));
 
 var findPivotPoint = function(matrixA){
 	if(typeof(matrixA) === 'undefined'){
@@ -171,12 +174,29 @@ var pirintMatrix = function(matrixA){
 	}
 }
 
+var isOptimal = function(vector){
+	var isOpt = true;
+	for(var i = 0; i < vector.length; i++){
+		if(vector[i] < 0){
+			return false;
+		}
+	}
+
+	return true;
+}
+
 //var result = computeResultingRow(list1, list2, '-', 1/8);
 //printResultingRow(result);
 var test = function(list1, list2, matrixA){
 	pirintMatrix(matrixA);
-	computeNextTabluea(matrixA);	
-
+	var testCount = 10;
+	while(!isOptimal(matrixA[matrixA.length-1])){
+		computeNextTabluea(matrixA);	
+		testCount --;
+		if(testCount == 0){
+			return;
+		}
+	}
 }
 
 test(list1, list2, matrixA);

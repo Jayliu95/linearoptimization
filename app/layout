@@ -1,0 +1,12 @@
+Using John Papa's angular project's strucutre
+
+/app
+	/controllers/
+		mainController.js
+	/services/
+	/views/
+		index.html
+	app.js
+/content
+/scripts
+/test
