@@ -1,17 +1,21 @@
 
 //declare modules
-angular.module('linearOptimizationApp', ['ngRoute'])
+angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'ngRoute'])
 
 //routing config
 .config(['$routeProvider', function($routeProvider){
 	$routeProvider
-	.when('/begin',{
-		controller: 'beginCtrl',
-		templateUrl: 'begin.html'
+	.when('/tableauDetail/:ID', {
+		controller: 'setupCtrl',
+		templateUrl: 'tableauDetail.html'
+	})
+
+	.when('/setup',{
+		controller: 'setupCtrl',
+		templateUrl: 'setup.html'
 	})
 
 	.when('/', {
-		controller: 'HomeCtrl',
 		templateUrl: 'home.html'
 	})
 

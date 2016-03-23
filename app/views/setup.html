@@ -1,0 +1,19 @@
+<form ng-submit="computeNext()">
+	<fieldset class="form-group">
+	<label for="getDecisionVariables">How many decision variables?</label>
+	<input type="text" class="form-control" id="getDecisionVariables" placeholder="Decision Variable(s)" ng-model="numDecVars">
+	</fieldset>
+
+	<fieldset class="form-group">
+	<label for="getNumConstraints">How many constraints?</label> <input type="text" class="form-control" id="getNumConstraints" placeholder="Number of Constraint(s)" ng-model="numCons">
+	</fieldset>
+
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary">Step By Step
+		</button>
+		<!-- edit out for now
+		<button type="submit" class="btn btn-danger">Final Solution
+		</button>
+		-->
+	</div>
+</form>
