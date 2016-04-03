@@ -1,26 +1,38 @@
 
 //declare modules
-angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'ngRoute'])
+angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'ui.router'])
 
 //routing config
-.config(['$routeProvider', function($routeProvider){
-	$routeProvider
-	.when('/tableauDetail/:ID', {
-		controller: 'setupCtrl',
-		templateUrl: 'tableauDetail.html'
-	})
+.config(['$urlRouterProvider', '$stateProvider',  function($urlRouterProvider, $stateProvider){
+	$stateProvider
 
-	.when('/setup',{
-		controller: 'setupCtrl',
-		templateUrl: 'setup.html'
-	})
+		.state('home', {
+			url: '/',
+			templateUrl: 'home.html'
+		})
 
-	.when('/', {
-		templateUrl: 'home.html'
-	})
+		//form: getData
+		.state('form', {
+			url: '/form',
+			templateUrl: 'form.html',
+			controller: 'setupCtrl'
+		})
 
-	.otherwise({ 
-		redirectTo: '/' 
-	});
+		//nested states
+		.state('form.setup', {
+			url: '/setup',
+			templateUrl: 'setup.html',
+			controller: 'setupCtrl'
+		})
+
+		.state('form.getValues', {
+			url: '/getValues',
+			templateUrl: 'getValues.html',
+			controller: 'setupCtrl'
+		});
+
+	$urlRouterProvider.otherwise('/');
+
+	
 }]);
 

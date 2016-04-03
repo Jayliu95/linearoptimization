@@ -1,13 +1,19 @@
 angular.module('linearOptimizationApp.controllers', [])
 .controller('setupCtrl', ['$scope', '$location', function($scope, $location){
-	var pageIndex = 0;
-	$scope.computeNext = function(){
-		pageIndex++;
-		var testPath = $location.path();
-		console.log("current path is: " + testPath);
-		var newPath = "does not exisit";
-		$location.path('tableauDetail/:'+pageIndex).replace();
-		newPath =$location.path();
-		console.log("new path is: " + newPath);
+	$scope.numDecisionVars = 10;
+	$scope.numConstrainVars = 10;
+	$scope.range = function(min,max){
+		var input = [];
+		for(var i = min; i <= max; i++){
+			input.push(i);
+		}
+		console.log("Input is" +input);
+		return input;
+	}
+
+	$scope.getValues = function(){
+		numDecisionVars = $scope.numDecVars;
+		numConstrainVars = $scope.numCons;
+		console.log("numDecisionVars: " + numDecisionVars +" numConstrainVars: " + numConstrainVars);
 	}
 }]);

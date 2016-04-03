@@ -1,0 +1,21 @@
+<table table table-bordered table-condensed>
+	<tbody>
+		<tr ng-repeat = "row in range(0,numDecisionVars)">
+			<td>Cons {{row}}:</td>
+			<td ng-repeat="column in range(0, numConstrainVars)"> 
+				<input type="text" class="form-control" id="{{id}}" placeholder="0-9"/> 
+			</td>
+			<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Select
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li> <= </li>
+    <li> = </li>
+    <li> >= </li>
+</ul>
+</div>
+		</tr>
+	</tbody>
+</table>

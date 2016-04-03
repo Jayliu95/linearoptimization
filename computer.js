@@ -49,7 +49,7 @@ var computeResultingRow = function(list1, list2, operation, inverse){
  * 	Input:
  */
 
-console.log(computeResultingRow(list1, list2, '-', 1/3));
+//console.log(computeResultingRow(list1, list2, '-', 1/3));
 
 var findPivotPoint = function(matrixA){
 	if(typeof(matrixA) === 'undefined'){
@@ -199,5 +199,14 @@ var test = function(list1, list2, matrixA){
 	}
 }
 
-test(list1, list2, matrixA);
+var computeStuff = function(){
+	var listA = [1,1,0,-1/24,3/8,0,9/4];	//resulting row
+	var listB = [0,0,0,1,1/2,-2,1/2];	//pivotal row
+	var result = computeResultingRow(listA, listB, '+', 1/24);
+	console.log(result);
+
+}
+
+computeStuff();
+//test(list1, list2, matrixA);
 
