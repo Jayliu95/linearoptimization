@@ -1,21 +1,39 @@
 <table table table-bordered table-condensed>
 	<tbody>
-		<tr ng-repeat = "row in range(0,numDecisionVars)">
-			<td>Cons {{row}}:</td>
-			<td ng-repeat="column in range(0, numConstrainVars)"> 
-				<input type="text" class="form-control" id="{{id}}" placeholder="0-9"/> 
+		<tr>
+			<td></td>
+			<td ng-repeat="row in range(1,numDecisionVars)">X{{row}}</td>
+			<td></td>
+			<td>Z</td>
+		</tr>
+		<tr ng-repeat = "row in range(1,numConstrainVars)">
+			<td> <div style="display:inline-block;width:100px" >Constraint {{row}}:</div></td>
+			<td ng-repeat="column in range(1, numDecisionVars)"> 
+				<input type="text" class="form-control" ng-model="A[row][column]" placeholder="0-9"/> 
 			</td>
+			<td>
 			<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Select
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li> <= </li>
-    <li> = </li>
-    <li> >= </li>
-</ul>
-</div>
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    				{{dropDownSelectedArr[row-1].value}}
+    				<span class="caret"></span>
+  				</button>
+  				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    				
+    				<li ng-repeat="choice in dropDownChoices">
+    					<!--Calling getDropDownSelectedItem function to update controller -->
+    					<a ng-click="getDropDownSelectedItem(row-1, choice)">{{choice}}</a>
+    				</li>
+
+				</ul>
+			</div>
+			</td>
+			<td> <input type="text" class="form-control" id="{{id}}" placeholder="b{{row}}"/></td>
 		</tr>
 	</tbody>
 </table>
+
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="form.getValues" class="btn btn-block btn-info" ng-click="consolePrint2DArray()">
+    Print stuff to console <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>

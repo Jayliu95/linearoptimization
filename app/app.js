@@ -1,6 +1,6 @@
 
 //declare modules
-angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'ui.router'])
+angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'ui.router', 'ui.bootstrap'])
 
 //routing config
 .config(['$urlRouterProvider', '$stateProvider',  function($urlRouterProvider, $stateProvider){
