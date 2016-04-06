@@ -1,13 +1,13 @@
 <table table table-bordered table-condensed>
 	<tbody>
 		<tr>
-			<td></td>
+			<td>NumDecision: {{numDecisionVars}} NumConstrain: {{numConstrainVars}}</td>
 			<td ng-repeat="row in range(1,numDecisionVars)">X{{row}}</td>
 			<td></td>
 			<td>Z</td>
 		</tr>
 		<tr ng-repeat = "row in range(1,numConstrainVars)">
-			<td> <div style="display:inline-block;width:100px" >Constraint {{row}}:</div></td>
+			<td> <div style="display:inline-block;width:100px" >Constrain {{row}}:</div></td>
 			<td ng-repeat="column in range(1, numDecisionVars)"> 
 				<input type="text" class="form-control" ng-model="A[row][column]" placeholder="0-9"/> 
 			</td>

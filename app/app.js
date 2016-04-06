@@ -21,14 +21,12 @@ angular.module('linearOptimizationApp', ['linearOptimizationApp.controllers', 'u
 		//nested states
 		.state('form.setup', {
 			url: '/setup',
-			templateUrl: 'setup.html',
-			controller: 'setupCtrl'
+			templateUrl: 'setup.html'
 		})
 
 		.state('form.getValues', {
 			url: '/getValues',
-			templateUrl: 'getValues.html',
-			controller: 'setupCtrl'
+			templateUrl: 'getValues.html'
 		});
 
 	$urlRouterProvider.otherwise('/');

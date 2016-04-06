@@ -2,6 +2,8 @@ angular.module('linearOptimizationApp.controllers', [])
 .controller('setupCtrl', ['$scope', '$location', function($scope, $location){
 	$scope.numDecisionVars = 5;
 	$scope.numConstrainVars = 5;
+	$scope.test1;
+	$scope.test2;
 	$scope.dropDownChoices = ['<', '=', '>'];
 	
 	$scope.makeArrOfObjects = function(count, stringUsed){
@@ -24,9 +26,26 @@ angular.module('linearOptimizationApp.controllers', [])
 		return input;
 	}
 	$scope.getValues = function(){
-		numDecisionVars = $scope.numDecVars;
-		numConstrainVars = $scope.numCons;
+		
+		/*
+		*/
+		setTimeout(function () {
+        	$scope.$apply(function () {
+            	$scope.test1 = $scope.numDecisionVars;
+				$scope.test2 = $scope.numConstrainVars; 
+            	console.log("Decision: " + $scope.test1 + " Constrains: " + $scope.test2);
+        	});
+    	}, 2000);
 	}
+	
+
+	$scope.$watch( 'numDecisionVars',
+		function(newValue, oldValue){
+		console.log('numDecisionVars Changed');
+		console.log(newValue);
+		console.log(oldValue);
+		}
+	);
 	$scope.getDropDownSelectedItem = function(count, item){
 		//item is  a string
 		var tempObject = {"key": count, "value": item};

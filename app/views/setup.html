@@ -1,20 +1,13 @@
 <fieldset class="form-group">
-<label for="getDecisionVariables">How many decision variables?</label>
-<input type="text" class="form-control" id="getDecisionVariables" placeholder="Decision Variable(s)" ng-model="numDecVars">
+<label for="getDecisionVariables">How many decision variables? {{numDecisionVars}}</label>
+<input type="text" class="form-control" id="getDecisionVariables" placeholder="Decision Variable(s)" ng-model="numDecisionVars">
 </fieldset>
 
 <fieldset class="form-group">
-<label for="getNumConstraints">How many constraints?</label> <input type="text" class="form-control" id="getNumConstraints" placeholder="Number of Constraint(s)" ng-model="numCons">
+<label for="getNumConstraints">How many constraints? {{numConstrainVars}}</label> <input type="text" class="form-control" id="getNumConstraints" placeholder="Number of Constraint(s)" ng-model="numConstrainVars">
 </fieldset>
 
-
-<ul>
-	<li ng-repeat = "id in numDecisionVars">
-	...
-	<input type="text" class="form-control" id="{{id}}" placeholder="0-9" ng-model="input_{{id}}">{{id}}</input>
-	</li>
-</ul>
-
+<div> <button ng-click="getValues()"> GetValues() </button></div>
 <div class="col-xs-6 col-xs-offset-3">
     <a ui-sref="form.getValues" class="btn btn-block btn-info" ng-click="getValues()">
     Setup Initial Tableau <span class="glyphicon glyphicon-circle-arrow-right"></span>
